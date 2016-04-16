@@ -1,4 +1,4 @@
-do(define(x, 10),
-   if(>(x, 5),
-      print("large"),
-      print("small")))
+do(define(x, 34),
+   if(==(x, 33),
+      print("equal"),
+      print("notequal")))
