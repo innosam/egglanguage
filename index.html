@@ -1,0 +1,42 @@
+</!doctype html>
+<head>
+
+</head>
+<body>
+<style>
+textarea {
+  height: 50em;
+  width: 50em;
+}
+</style>
+
+<textarea id="input"></textarea>
+<textarea id="output"></textarea>
+<button type="button" style="display: block" id="interpret">interpret</button>
+<script type= text/javascript src="interpret_lib.js"></script>
+<script type="text/javascript">
+  var input = document.getElementById("input");
+  var button = document.getElementById("interpret");
+  
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", "sample1.egg", false);
+  xmlHttp.send(null);
+  input.value = xmlHttp.responseText; 
+  
+  var consolelog = ""
+  console.log = function(message)
+  {
+    consolelog = consolelog + message;
+  }
+ 
+  button.onclick = function()
+  {
+    var input = document.getElementById("input");
+    var output = document.getElementById("output");
+    var ast = parse_egg(input.value).exp;
+    var result = evaluate(ast);
+    output.value = "Return value: \n" + result + "\n\n\n" + "Console Log: \n" + consolelog; 
+  };
+ 
+</script>
+</body>
